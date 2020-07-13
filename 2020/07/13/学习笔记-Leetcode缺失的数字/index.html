@@ -10,16 +10,16 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="title:学习笔记:Leetcode缺失的数字date:2020-07-13 14:47:39tags:学习笔记|leetcode|算法  题目  解法一：通过题目，给定了一个数组。不难想到，我们可以先用排序算法对数组进行排序。再使用一个复杂度为O(N)的循环进行比对，就可以解决这一道题。 12345678910int Solution::missingNumber(vector&lt;int">
+  <meta name="description" content="title:学习笔记:Leetcode缺失的数字date:2020-07-13 14:47:39tags:学习笔记|leetcode|算法  题目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记-Leetcode缺失的数字">
 <meta property="og:url" content="http://wstzj.github.io/2020/07/13/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Leetcode%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97/index.html">
 <meta property="og:site_name" content="老咸鱼的Blog">
-<meta property="og:description" content="title:学习笔记:Leetcode缺失的数字date:2020-07-13 14:47:39tags:学习笔记|leetcode|算法  题目  解法一：通过题目，给定了一个数组。不难想到，我们可以先用排序算法对数组进行排序。再使用一个复杂度为O(N)的循环进行比对，就可以解决这一道题。 12345678910int Solution::missingNumber(vector&lt;int">
+<meta property="og:description" content="title:学习笔记:Leetcode缺失的数字date:2020-07-13 14:47:39tags:学习笔记|leetcode|算法  题目">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/wstzj/picGo/master/img/%E7%BC%BA%E5%A4%B1%E6%95%B0%E5%AD%97%E9%A2%98%E7%9B%AE.jpg">
 <meta property="article:published_time" content="2020-07-13T06:47:39.022Z">
-<meta property="article:modified_time" content="2020-07-13T08:44:52.706Z">
+<meta property="article:modified_time" content="2020-07-13T08:53:27.314Z">
 <meta property="article:author" content="TangZ">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/wstzj/picGo/master/img/%E7%BC%BA%E5%A4%B1%E6%95%B0%E5%AD%97%E9%A2%98%E7%9B%AE.jpg">
@@ -247,6 +247,8 @@
 <hr>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><img src="https://raw.githubusercontent.com/wstzj/picGo/master/img/%E7%BC%BA%E5%A4%B1%E6%95%B0%E5%AD%97%E9%A2%98%E7%9B%AE.jpg" alt=""></p>
 <hr>
+<a id="more"></a>
+
 <h3 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h3><p>通过题目，给定了一个数组。<br>不难想到，我们可以先用排序算法对数组进行排序。<br>再使用一个复杂度为O(N)的循环进行比对，就可以解决这一道题。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Solution::missingNumber</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cnt;<span class="comment">//计数器</span></span><br><span class="line">    sort(nums.<span class="built_in">begin</span>(),nums.<span class="built_in">end</span>());<span class="comment">//排序函数</span></span><br><span class="line">    <span class="keyword">for</span>(cnt=<span class="number">0</span>;cnt&lt;nums.<span class="built_in">size</span>();cnt++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(cnt != nums[cnt])&#123;</span><br><span class="line">            <span class="keyword">break</span>; <span class="comment">//因为已经从小到大排序好了所以cnt的值应当等于nums[cnt]的值，若不等于则cnt的值就是缺失数字。</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
