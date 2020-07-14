@@ -18,7 +18,7 @@
 <meta property="og:description" content="这是将是一系列基于c语言的学习笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-13T00:00:21.000Z">
-<meta property="article:modified_time" content="2020-07-14T03:02:10.613Z">
+<meta property="article:modified_time" content="2020-07-14T08:35:43.487Z">
 <meta property="article:author" content="TangZ">
 <meta property="article:tag" content="学习笔记|数据结构">
 <meta name="twitter:card" content="summary">
@@ -221,7 +221,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">323字</span>
+      <span class="post-count">457字</span>
     </span>
   </span>
 
@@ -261,13 +261,21 @@
 <li>输入： 它不一定要输入呐</li>
 </ul>
 <hr>
-<h3 id="一些算法"><a href="#一些算法" class="headerlink" title="一些算法"></a>一些算法</h3><p>二分搜索(ver.C++) 给定一个排序好的数组进行查找</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Comparable&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span> <span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;Comparable&gt; &amp;a ,<span class="keyword">const</span> Comparable &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>, high =a.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (low +high)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(a[mid] &lt; x)</span><br><span class="line">            low =mid +<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &gt; x)</span><br><span class="line">            high =mid <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> NOT_FOUND;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="一些算法"><a href="#一些算法" class="headerlink" title="一些算法"></a>一些算法</h3><h4 id="二分搜索-ver-C-给定一个排序好的数组进行查找"><a href="#二分搜索-ver-C-给定一个排序好的数组进行查找" class="headerlink" title="二分搜索(ver.C++) 给定一个排序好的数组进行查找"></a>二分搜索(ver.C++) 给定一个排序好的数组进行查找</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Comparable&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binarySearch</span> <span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;Comparable&gt; &amp;a ,<span class="keyword">const</span> Comparable &amp;x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>, high =a.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (low +high)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(a[mid] &lt; x)</span><br><span class="line">            low =mid +<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &gt; x)</span><br><span class="line">            high =mid <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> NOT_FOUND;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="合并代码-增加可读性"><a href="#合并代码-增加可读性" class="headerlink" title="合并代码(增加可读性)"></a>合并代码(<del>增加可读性</del>)</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Node *newNode = <span class="keyword">new</span> Node(x, p-&gt;prev, p); <span class="comment">//step1、2</span></span><br><span class="line">p-&gt;prev-&gt;next = newNode; <span class="comment">//step3</span></span><br><span class="line">p-&gt;prev =newNode; <span class="comment">//step4</span></span><br></pre></td></tr></table></figure>
 
+<p>我们可以将3、4步进行一个合并</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Node *newNode = <span class="keyword">new</span> Node(x, p-&gt;prev, p); <span class="comment">//step1、2</span></span><br><span class="line">p-&gt;prev-&gt;next = p-&gt;prev = newNode; <span class="comment">//step3、4</span></span><br></pre></td></tr></table></figure>
 
+<p>再合并一下啊</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p-&gt;prev-&gt;next = p-&gt;prev = Node(x, p-&gt;prev, p);</span><br></pre></td></tr></table></figure>
 
-
+<p><del>可读性极强的</del>代码完成了！</p>
+<hr>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈是限制<code>插入</code>和<code>删除</code>  <code>只能在一个位置上</code>进行的表</p>
+<p>改位置是表的末端，称为栈顶(top)</p>
+<p>详见 栈</p>
 <hr>
 <h3 id="一些术语"><a href="#一些术语" class="headerlink" title="一些术语"></a>一些术语</h3><p>抽象数据类型  (Abstract Data Type, ADT )</p>
 
@@ -415,7 +423,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法特性"><span class="toc-number">1.</span> <span class="toc-text">算法特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些算法"><span class="toc-number">2.</span> <span class="toc-text">一些算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些术语"><span class="toc-number">3.</span> <span class="toc-text">一些术语</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法特性"><span class="toc-number">1.</span> <span class="toc-text">算法特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些算法"><span class="toc-number">2.</span> <span class="toc-text">一些算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#二分搜索-ver-C-给定一个排序好的数组进行查找"><span class="toc-number">2.1.</span> <span class="toc-text">二分搜索(ver.C++) 给定一个排序好的数组进行查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#合并代码-增加可读性"><span class="toc-number">2.2.</span> <span class="toc-text">合并代码(增加可读性)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#栈"><span class="toc-number">3.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一些术语"><span class="toc-number">4.</span> <span class="toc-text">一些术语</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -572,6 +580,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记|数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">学习笔记|栈</a>
               </li>
             
             <div class="clearfix"></div>
