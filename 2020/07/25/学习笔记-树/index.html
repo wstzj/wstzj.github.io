@@ -18,7 +18,7 @@
 <meta property="og:description" content="树对于大量的输入数据，链表的线性访问就时间太长了。 所以有必要学习更快的数据结构，二叉查找树就是一个很好的数据结构，它的每一个基本操作运行时间基本上是 O(logN)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-25T00:56:40.000Z">
-<meta property="article:modified_time" content="2020-07-25T17:05:22.168Z">
+<meta property="article:modified_time" content="2020-07-26T05:25:37.378Z">
 <meta property="article:author" content="TangZ">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="树">
@@ -222,7 +222,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">476字</span>
+      <span class="post-count">874字</span>
     </span>
   </span>
 
@@ -231,7 +231,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -255,7 +255,24 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>&#123;</span></span><br><span class="line">    Object element;</span><br><span class="line">    TreeNode *child; <span class="comment">//指向子结点</span></span><br><span class="line">    TreeNode *nextborther;<span class="comment">//指向同级(兄弟)结点</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>遍历时就可以先考虑有无兄弟结点，在考虑有无子结点。但是这种思考策略并不通用，下面我将介绍通用的遍历方法。</p>
-<h3 id="树的遍历及应用"><a href="#树的遍历及应用" class="headerlink" title="树的遍历及应用"></a>树的遍历及应用</h3>
+<h3 id="树的遍历及应用"><a href="#树的遍历及应用" class="headerlink" title="树的遍历及应用"></a>树的遍历及应用</h3><p>讲遍历方法之前，我们先了解一个特殊的树——二叉树。</p>
+<h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><p>二叉树是指每一个结点不能多于俩个儿子的树。</p>
+<p>具体结构体定义如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>&#123;</span></span><br><span class="line">    Object element;</span><br><span class="line">    TreeNode *leftNode;<span class="comment">//左子结点</span></span><br><span class="line">    TreeNode *rightNode;<span class="comment">//右子结点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><p>如果在一张普通树中，前序遍历基本与深度优先算法差不多，不如说前序是深度优先算法的特殊情况，只是因为在二叉树中有特殊说法(才有的区分)</p>
+<p>前序遍历的策略是</p>
+<blockquote>
+<p>从根开始遍历，遍历时会直接遍历至叶结点，返回至叶结点上一结点 x，遍历叶结点的兄弟结点，如果 x 所有子结点全部遍历完成，会返回 x 的上一结点 y,遍历x的所有兄弟结点。重复该操作直整个树遍历完为止</p>
+</blockquote>
+<h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><p>后序遍历策略(非递归)</p>
+<blockquote>
+<p>创建两个栈，一个储存结点，一个储存标记，两个栈的元素数应当是相同的。</p>
+<p>我们首先可以遍历左结点，并将结点入栈，并将标记0入栈</p>
+<p>遍历至叶结点时，不入栈，查看标记栈顶，若为0，代表着右结点并未遍历，弹出0，将1入栈。获取存储栈的栈顶，遍历右结点，右结点入栈。</p>
+<p>重复操作，直至叶结点，标记栈为1，就可出栈。我们很容易就能靠这种标记的方式将左右结点遍历完整表示出来</p>
+</blockquote>
+
     
 
     
@@ -395,7 +412,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#树"><span class="toc-number">1.</span> <span class="toc-text">树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#预备知识"><span class="toc-number">1.1.</span> <span class="toc-text">预备知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">1.2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树的遍历及应用"><span class="toc-number">1.3.</span> <span class="toc-text">树的遍历及应用</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#树"><span class="toc-number">1.</span> <span class="toc-text">树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#预备知识"><span class="toc-number">1.1.</span> <span class="toc-text">预备知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">1.2.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树的遍历及应用"><span class="toc-number">1.3.</span> <span class="toc-text">树的遍历及应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#二叉树"><span class="toc-number">1.3.1.</span> <span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#前序遍历"><span class="toc-number">1.3.2.</span> <span class="toc-text">前序遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后序遍历"><span class="toc-number">1.3.3.</span> <span class="toc-text">后序遍历</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
