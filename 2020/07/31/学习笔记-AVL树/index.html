@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="AVL树这是一种最老的平衡查找树 一棵AVL树是其每个结点的左子树和右子树的高度最多差1的二叉查找树 大致上讲，一棵AVL树的高度最多为$$1.44  log(N+2)-1.328$$但实际上，只比 logN 稍微多一些，而相关的推导与斐波那契数密切相关，这里就点到为止。">
+  <meta name="description" content="AVL树这是一种最老的平衡查找树 一棵AVL树是其每个结点的左子树和右子树的高度最多差1的二叉查找树 大致上讲，一棵AVL树的高度最多为 1.44  log(N+2)-1.328 这个算式实际上，只比 logN 稍微多一些，而相关的推导与斐波那契数密切相关，这里就点到为止。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习笔记:AVL树">
 <meta property="og:url" content="http://wstzj.github.io/2020/07/31/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-AVL%E6%A0%91/index.html">
 <meta property="og:site_name" content="老咸鱼的Blog">
-<meta property="og:description" content="AVL树这是一种最老的平衡查找树 一棵AVL树是其每个结点的左子树和右子树的高度最多差1的二叉查找树 大致上讲，一棵AVL树的高度最多为$$1.44  log(N+2)-1.328$$但实际上，只比 logN 稍微多一些，而相关的推导与斐波那契数密切相关，这里就点到为止。">
+<meta property="og:description" content="AVL树这是一种最老的平衡查找树 一棵AVL树是其每个结点的左子树和右子树的高度最多差1的二叉查找树 大致上讲，一棵AVL树的高度最多为 1.44  log(N+2)-1.328 这个算式实际上，只比 logN 稍微多一些，而相关的推导与斐波那契数密切相关，这里就点到为止。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-31T07:48:43.000Z">
-<meta property="article:modified_time" content="2020-08-02T01:07:50.107Z">
+<meta property="article:modified_time" content="2020-08-05T15:53:31.702Z">
 <meta property="article:author" content="TangZ">
 <meta property="article:tag" content="学习笔记">
 <meta property="article:tag" content="树">
@@ -223,7 +223,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">100字</span>
+      <span class="post-count">512字</span>
     </span>
   </span>
 
@@ -232,7 +232,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -243,10 +243,34 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h3><p>这是一种最老的平衡查找树</p>
+    <h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><p>这是一种最老的平衡查找树</p>
 <p><strong>一棵AVL树</strong>是其<strong>每个结点</strong>的左子树和右子树的高度<strong>最多差1</strong>的二叉查找树</p>
-<p>大致上讲，一棵AVL树的高度最多为<br>$$<br>1.44  log(N+2)-1.328<br>$$<br>但实际上，只比 logN 稍微多一些，而相关的推导与斐波那契数密切相关，这里就点到为止。</p>
+<p>大致上讲，一棵AVL树的高度最多为</p>
+<p>1.44  log(N+2)-1.328</p>
+<p>这个算式实际上，只比 logN 稍微多一些，而相关的推导与斐波那契数密切相关，这里就点到为止。</p>
 <a id="more"></a>
+
+<p>AVL树靠两种算法保持平衡 <strong>单旋转和双旋转</strong></p>
+<p>插入有以下4种情况</p>
+<blockquote>
+<ol>
+<li>对α的左儿子的左子树进行一次插入。</li>
+<li>对α的左儿子的右子树进行一次插入。</li>
+<li>对α的右儿子的左子树进行一次插入。</li>
+<li>对α的右儿子的右子树进行一次插入。</li>
+</ol>
+</blockquote>
+<p>单旋转是情况1，3</p>
+<p>双旋转是情况2，4</p>
+<h3 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h3><h4 id="结点声明"><a href="#结点声明" class="headerlink" title="结点声明"></a>结点声明</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">AvlNode</span>&#123;</span></span><br><span class="line">    Comparable element;</span><br><span class="line">    AvlNode *left;</span><br><span class="line">    AvlNode *right;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">height</span>;</span><br><span class="line">    </span><br><span class="line">    AvlNode(<span class="keyword">const</span> Comparable &amp; theElement, AvlNode *lt, AvlNode *rt,<span class="keyword">int</span> h=<span class="number">0</span>): element(theElement), left(lt), right(rt), <span class="built_in">height</span>(h)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="计算结点高度"><a href="#计算结点高度" class="headerlink" title="计算结点高度"></a>计算结点高度</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">height</span><span class="params">(AvlNode *t)</span> <span class="keyword">const</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> t == <span class="literal">NULL</span> ? <span class="number">-1</span> : t-&gt;<span class="built_in">height</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">const</span> Comparable &amp; x, AvlNode t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(t == <span class="literal">NULL</span>)</span><br><span class="line">        t = <span class="keyword">new</span> AvlNode(x, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(x &lt; t-&gt;element)</span><br><span class="line">    &#123;   </span><br><span class="line">        insert(x, t-&gt;left); <span class="comment">//递归插入</span></span><br><span class="line">        <span class="keyword">if</span>( <span class="built_in">height</span>(t-&gt;left) - <span class="built_in">height</span>(t-&gt;right) == <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x &lt; t-&gt;left-&gt;element)</span><br><span class="line">                rotateWithWithLeftChild(t);</span><br><span class="line">        	<span class="keyword">else</span></span><br><span class="line">            	doubleWithLeftChild(t);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span> (t-&gt; element &lt; x)</span><br><span class="line">    &#123;</span><br><span class="line">        insert(x, t-&gt;right);</span><br><span class="line">        <span class="keyword">if</span>( <span class="built_in">height</span>(t-&gt;right) - <span class="built_in">height</span>(t-&gt;left) == <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(t-&gt;right-&gt;element &lt;x)</span><br><span class="line">                rotateWithRightChild(t);</span><br><span class="line">        	<span class="keyword">else</span></span><br><span class="line">                doubleWithRightChild(t);</span><br><span class="line">        &#125;         </span><br><span class="line">    &#125;</span><br><span class="line">    t-&gt;<span class="built_in">height</span> = <span class="built_in">max</span>( <span class="built_in">height</span>(t-&gt;left), <span class="built_in">height</span>(t-&gt;right) ) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="单旋转"><a href="#单旋转" class="headerlink" title="单旋转"></a>单旋转</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotateWithLeftChild</span><span class="params">(AvlNode k2)</span></span>&#123;</span><br><span class="line">    AvlNode *k1 = k2-&gt;left;</span><br><span class="line">    k2 -&gt;left = k1-&gt;right;</span><br><span class="line">    k1-&gt;right = k2;</span><br><span class="line">    k2-&gt;<span class="built_in">height</span> = <span class="built_in">max</span>( <span class="built_in">height</span>(k2-&gt;left), <span class="built_in">height</span>(k2-&gt;right) ) + <span class="number">1</span>;</span><br><span class="line">    k1-&gt;<span class="built_in">height</span> = <span class="built_in">max</span>( <span class="built_in">height</span>(k1-&gt;left), k2-&gt;<span class="built_in">height</span> ) + <span class="number">1</span>;</span><br><span class="line">    k2 = k1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotateWithRightChild</span><span class="params">(AvlNode k2)</span></span>&#123;</span><br><span class="line">    AvlNode *k1 = k2-&gt;right;</span><br><span class="line">    k2 -&gt;right = k1-&gt;left;</span><br><span class="line">    k1-&gt;left =k2;</span><br><span class="line">    k2-&gt;<span class="built_in">height</span> = <span class="built_in">max</span>( <span class="built_in">height</span>(k2-&gt;left), <span class="built_in">height</span>(k2-&gt;right) ) + <span class="number">1</span>;</span><br><span class="line">    k1-&gt;<span class="built_in">height</span> = <span class="built_in">max</span>( <span class="built_in">height</span>(k1-&gt;right), k2-&gt;<span class="built_in">height</span> ) + <span class="number">1</span>;</span><br><span class="line">    k2 = k1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="双旋转"><a href="#双旋转" class="headerlink" title="双旋转"></a>双旋转</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doubleWithLeftChild</span><span class="params">(AvlNode k3)</span></span>&#123;</span><br><span class="line">    rotateWithRightChild(k3-&gt;left);</span><br><span class="line">    rotateWithLeftChild(k3);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doubleWithRightChild</span><span class="params">(AvlNode k3)</span></span>&#123;</span><br><span class="line">    rotateWithLeftChild(k3-&gt;left);</span><br><span class="line">    rotateWithRightChild(k3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     
@@ -392,7 +416,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#AVL树"><span class="toc-number">1.</span> <span class="toc-text">AVL树</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AVL树"><span class="toc-number">1.</span> <span class="toc-text">AVL树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码部分"><span class="toc-number">1.1.</span> <span class="toc-text">代码部分</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#结点声明"><span class="toc-number">1.1.1.</span> <span class="toc-text">结点声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算结点高度"><span class="toc-number">1.1.2.</span> <span class="toc-text">计算结点高度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入"><span class="toc-number">1.1.3.</span> <span class="toc-text">插入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单旋转"><span class="toc-number">1.1.4.</span> <span class="toc-text">单旋转</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双旋转"><span class="toc-number">1.1.5.</span> <span class="toc-text">双旋转</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
